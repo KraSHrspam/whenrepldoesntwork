@@ -21,7 +21,7 @@ Python3 должен быть уже установлен.
 ```
 pip install -r requirements.txt
 ```
-#requirements.txt файлик, каторый вам нужен.
+requirements.txt файлик, каторый вам нужен.
 
 ### Для запуска нужно
 
