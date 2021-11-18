@@ -2,6 +2,7 @@ import os
 import requests
 from urllib.parse import urlparse
 from dotenv import load_dotenv
+import argparse
 
 def shorten_link(user_url, http_headers):
     http_body = {'long_url': user_url}
@@ -30,10 +31,14 @@ def is_bitlink(user_url, http_headers):
 
 if __name__ == '__main__':
     load_dotenv()
+    parser = argparse.ArgumentParser(
+    description='Описание что делает программа'
+    )
+    parser.add_argument('url', help='Ссылочка')
+    args = parser.parse_args()
+    user_url = args.url
 
     bitly_token = os.getenv('BITLY_TOKEN')
-
-    user_url = input()
 
     http_headers = {'Authorization': f'Bearer {bitly_token}'}
 
