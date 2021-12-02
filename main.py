@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import argparse
 
 
-def parse(user_url):
+def delete_netloc_url(user_url):
     parse_url = urlparse(user_url)
     finished_parse_url = f'{parse_url.netloc}{parse_url.path}'
     return finished_parse_url
@@ -19,7 +19,7 @@ def shorten_link(user_url, http_headers):
 
 
 def sum_of_click(bitlink, http_headers):
-    finished_parse_url = parse(bitlink)
+    finished_parse_url = delete_netloc_url(bitlink)
     url = f'https://api-ssl.bitly.com/v4/bitlinks/{finished_parse_url}/clicks/summary'
     response = requests.get(url, headers=http_headers)
     response.raise_for_status()
@@ -27,7 +27,7 @@ def sum_of_click(bitlink, http_headers):
 
 
 def is_bitlink(user_url, http_headers):
-    finished_parse_url = parse(user_url)
+    finished_parse_url = delete_netloc_urls(user_url)
     reqst_url = f'https://api-ssl.bitly.com/v4/bitlinks/{finished_parse_url}'
     response = requests.get(reqst_url, headers=http_headers)
     return response.ok
