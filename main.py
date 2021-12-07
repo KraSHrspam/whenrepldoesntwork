@@ -19,7 +19,7 @@ def shorten_link(user_url, http_headers):
 
 
 def sum_of_click(bitlink, http_headers):
-    finished_parse_url = delete_netloc_url(bitlink)
+    finished_parse_url = get_netloc_and_path(bitlink)
     url = f'https://api-ssl.bitly.com/v4/bitlinks/{finished_parse_url}/clicks/summary'
     response = requests.get(url, headers=http_headers)
     response.raise_for_status()
@@ -27,7 +27,7 @@ def sum_of_click(bitlink, http_headers):
 
 
 def is_bitlink(user_url, http_headers):
-    finished_parse_url = delete_netloc_urls(user_url)
+    finished_parse_url = get_netloc_and_path(user_url)
     reqst_url = f'https://api-ssl.bitly.com/v4/bitlinks/{finished_parse_url}'
     response = requests.get(reqst_url, headers=http_headers)
     return response.ok
