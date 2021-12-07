@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import argparse
 
 
-def delete_netloc_url(user_url):
+def get_netloc_and_path(user_url):
     parse_url = urlparse(user_url)
     finished_parse_url = f'{parse_url.netloc}{parse_url.path}'
     return finished_parse_url
@@ -36,7 +36,7 @@ def is_bitlink(user_url, http_headers):
 if __name__ == '__main__':
     load_dotenv()
     parser = argparse.ArgumentParser(
-        description='Описание что делает программа'
+        description='Данная программа делает из длинной ссылки короткую.'
     )
     parser.add_argument('url', help='Ссылка')
     args = parser.parse_args()
